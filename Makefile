@@ -24,7 +24,7 @@ export TERRAFORM_FILE_MIRROR_REPO ?= ${TERRAFORM_FILE_MIRROR}/registry.terraform
 
 export GOLANGCILINT_VERSION ?= 1.64.6
 
-PLATFORMS ?= linux_amd64 linux_arm64
+PLATFORMS ?= linux_amd64
 
 # -include will silently skip missing files, which allows us
 # to load those files with a target in the Makefile. If only
