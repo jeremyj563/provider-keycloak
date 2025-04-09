@@ -17,7 +17,7 @@ img.build:
 	@$(OK) docker build \
                --build-arg TARGETOS=linux \
                --build-arg TARGETARCH=amd64 \
-               --platform $(IMAGE_PLATFORMS) \
+               --platform=linux/amd64 \
                $(IMAGE)
 
 img.publish:
@@ -28,12 +28,12 @@ img.publish:
 img.build.shared:
 	@cp Dockerfile $(IMAGE_TEMP_DIR) || $(FAIL)
 	@cp -r $(OUTPUT_DIR)/bin/ $(IMAGE_TEMP_DIR)/bin || $(FAIL)
-	@docker buildx build $(BUILD_ARGS) \
-                --build-arg TARGETOS=linux \
-                --build-arg TARGETARCH=amd64 \
-		--platform $(IMAGE_PLATFORMS) \
-		-t $(IMAGE) \
-		$(IMAGE_TEMP_DIR) || $(FAIL)
+	@docker buildx build \
+        --build-arg TARGETOS=linux \
+        --build-arg TARGETARCH=amd64 \
+        --platform=linux/amd64 \
+        -t $(IMAGE) \
+        $(IMAGE_TEMP_DIR) || $(FAIL)
 
 img.promote:
 	@$(INFO) Skipping image promotion from $(FROM_IMAGE) to $(TO_IMAGE)
