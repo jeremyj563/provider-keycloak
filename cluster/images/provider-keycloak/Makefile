@@ -15,6 +15,8 @@ img.build:
 	@$(INFO) docker build $(IMAGE)
 	@$(MAKE) BUILD_ARGS="--load" img.build.shared
 	@$(OK) docker build \
+               --build-arg TARGETOS=linux \
+               --build-arg TARGETARCH=amd64 \
                --platform $(IMAGE_PLATFORMS) \
                $(IMAGE)
 
@@ -27,6 +29,8 @@ img.build.shared:
 	@cp Dockerfile $(IMAGE_TEMP_DIR) || $(FAIL)
 	@cp -r $(OUTPUT_DIR)/bin/ $(IMAGE_TEMP_DIR)/bin || $(FAIL)
 	@docker buildx build $(BUILD_ARGS) \
+                --build-arg TARGETOS=linux \
+                --build-arg TARGETARCH=amd64 \
 		--platform $(IMAGE_PLATFORMS) \
 		-t $(IMAGE) \
 		$(IMAGE_TEMP_DIR) || $(FAIL)
