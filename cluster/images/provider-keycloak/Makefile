@@ -14,7 +14,9 @@ include ../../../build/makelib/imagelight.mk
 img.build:
 	@$(INFO) docker build $(IMAGE)
 	@$(MAKE) BUILD_ARGS="--load" img.build.shared
-	@$(OK) docker build $(IMAGE)
+	@$(OK) docker build \
+               --platform $(IMAGE_PLATFORMS) \
+               $(IMAGE)
 
 img.publish:
 	@$(INFO) Skipping image publish for $(IMAGE)
