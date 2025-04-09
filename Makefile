@@ -75,17 +75,17 @@ $(KUBECTL):
 # ====================================================================================
 # Setup Images
 
-REGISTRY_ORGS ?= docker.io/jeremyj563/crossplane-contrib
+REGISTRY_ORGS ?= docker.io/jeremyj563
 IMAGES = $(PROJECT_NAME)
 -include build/makelib/imagelight.mk
 
 # ====================================================================================
 # Setup XPKG
 
-XPKG_REG_ORGS ?= docker.io/jeremyj563/crossplane-contrib
+XPKG_REG_ORGS ?= docker.io/jeremyj563
 # NOTE(hasheddan): skip promoting on docker.io/jeremyj563 as channel tags are
 # inferred.
-XPKG_REG_ORGS_NO_PROMOTE ?= docker.io/jeremyj563/crossplane-contrib
+XPKG_REG_ORGS_NO_PROMOTE ?= docker.io/jeremyj563
 XPKGS = $(PROJECT_NAME)
 -include build/makelib/xpkg.mk
 
